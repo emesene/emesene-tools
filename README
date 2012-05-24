@@ -1,5 +1,0 @@
-Some tools for emesene development
-
-statistics.py reads the launchpad statistics from the emesene ppa
-
-signals.py looks for non-unsubscribed signals
