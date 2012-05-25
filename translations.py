@@ -17,6 +17,18 @@ BLACKLIST = ['emesene']
 
 os.chdir(EMESENE_DIR)
 
+# Remove all translations from the desktop file
+df = open(DESKTOP_FILE, 'r')
+text = ''
+for line in df.readlines():
+    if not line.startswith('Comment[') and not line.startswith('Name['):
+        text += line
+df.close()
+df = open(DESKTOP_FILE, 'w')
+df.write(text)
+df.close()
+
+# Find strings that have to be translated in the desktop file
 desktop_file = open(DESKTOP_FILE, 'r')
 strings = []
 indices = []
