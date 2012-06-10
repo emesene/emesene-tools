@@ -11,7 +11,7 @@ _ = gettext.gettext
 EMESENE_DIR = os.path.expanduser('~/emesene-dev')
 EMESENE_DIR2 = os.path.join(EMESENE_DIR, 'emesene')
 CURRENT_DIR = os.getcwd()
-FILE_LIST = ['*.py', 'e3/base/*.py', 'e3/common/*.py', 'e3/papylib/*.py', 'gui/base/*.py', 'gui/gtkui/*.py', 'gui/common/*.py']
+FILE_LIST = ['*.py', 'e3/base/*.py', 'e3/common/*.py', 'e3/papylib/*.py', 'gui/base/*.py', 'gui/gtkui/*.py', 'gui/common/*.py', 'plugins/*/*.py', 'plugins/*/*/*.py']
 DESKTOP_FILE = os.path.join(EMESENE_DIR2, 'data/share/applications/emesene.desktop')
 BLACKLIST = ['emesene']
 
@@ -76,6 +76,9 @@ args.append(os.path.join(EMESENE_DIR, 'emesene.pot'))
 args.append(os.path.join(CURRENT_DIR, 'translations.py'))
 args = ' '.join(args)
 
+os.chdir(os.path.join(EMESENE_DIR2, 'plugins'))
+subprocess.call('git pull origin master', shell=True)
+os.chdir(EMESENE_DIR)
 subprocess.call(args, shell=True)
 subprocess.call('python '+os.path.join(EMESENE_DIR2, 'temp_translations_file.py'), shell=True)
 os.remove(os.path.join(EMESENE_DIR2, 'temp_translations_file.py'))
